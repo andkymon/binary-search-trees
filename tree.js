@@ -2,7 +2,9 @@ import { Node } from "./node.js";
 
 export class Tree {
   constructor(array) {
-    array.sort(function(a, b){return a-b});
+    array.sort(function (a, b) {
+      return a - b;
+    });
     this.root = this.buildTree(array);
   }
 
@@ -101,10 +103,9 @@ export class Tree {
     if (targetNode === null) {
       throw new Error("Node not found");
     }
-    
+
     // Case 1: If target node has no child, target node is replaced by null
     if (targetNode.leftNode === null && targetNode.rightNode === null) {
-      
       // Check which branch of the target node's parent references it, then set it to null
       if (targetParent.leftNode === targetNode) {
         targetParent.leftNode = null;
@@ -118,13 +119,13 @@ export class Tree {
     if (targetNode.leftNode === null || targetNode.rightNode === null) {
       let targetChild;
 
-       // Find target's only child
+      // Find target's only child
       if (targetNode.leftNode === null) {
-        targetChild = targetNode.rightNode;      
+        targetChild = targetNode.rightNode;
       } else if (targetNode.rightNode === null) {
-        targetChild = targetNode.leftNode;      
+        targetChild = targetNode.leftNode;
       }
-  
+
       // Check which branch of the target node's parent references it, then set it to target's child
       if (targetParent.leftNode === targetNode) {
         targetParent.leftNode = targetChild;
@@ -192,15 +193,15 @@ export class Tree {
 
     let searchPointer;
     const queue = [];
-    
+
     queue.push(this.root);
-    
+
     while (queue.length !== 0) {
       searchPointer = queue.shift();
       callback(searchPointer);
 
       if (searchPointer.leftNode !== null) {
-        queue.push(searchPointer.leftNode)
+        queue.push(searchPointer.leftNode);
       }
 
       if (searchPointer.rightNode !== null) {
@@ -286,7 +287,7 @@ export class Tree {
         counter++;
         continue;
       }
-      
+
       if (node.value > searchPointer.value) {
         searchPointer = searchPointer.rightNode;
         counter++;

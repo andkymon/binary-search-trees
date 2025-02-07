@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/andkymon/binary-search-trees/issues"
   },
-  "homepage": "https://github.com/andkymon/binary-search-trees#readme"
+  "homepage": "https://github.com/andkymon/binary-search-trees#readme",
+  "type": "module"
 }

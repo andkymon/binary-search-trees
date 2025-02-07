@@ -294,4 +294,15 @@ export class Tree {
       }
     }
   }
+
+  isBalanced() {
+    const leftSubtreeHeight = this.height(this.root.leftNode);
+    const rightSubtreeHeight = this.height(this.root.rightNode);
+
+    if (Math.abs(leftSubtreeHeight - rightSubtreeHeight) <= 1) {
+      return true;
+    }
+
+    return false;
+  }
 }

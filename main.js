@@ -53,4 +53,12 @@ console.log(test.height(test.root.rightNode));
 // depth()
 console.log(test.depth(test.root));
 console.log(test.depth(test.root.rightNode));
+
+// isBalanced();
+console.log(test.isBalanced());
+test.insert(24);
+test.insert(25);
+test.insert(26);
+test.insert(27);
+console.log(test.isBalanced());
 */

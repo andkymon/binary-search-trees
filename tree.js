@@ -2,7 +2,7 @@ import { Node } from "./node.js";
 
 export class Tree {
   constructor(array) {
-    array.sort();
+    array.sort(function(a, b){return a-b});
     this.root = this.buildTree(array);
   }
 
@@ -46,12 +46,7 @@ export class Tree {
   insert(value) {
     let searchPointer = this.root;
 
-    // Stop on the target node's parent
-    // While searchPointer is not a leaf
-    while (
-      searchPointer.leftNode !== null &&
-      searchPointer.rightNode !== null
-    ) {
+    while (searchPointer !== null) {
       if (value === searchPointer.value) {
         return;
       }
@@ -79,72 +74,111 @@ export class Tree {
   }
 
   deleteItem(value) {
-    let searchPointer = this.root;
-    let parent;
+    // Pointers to target node and targeet node's parent
+    let targetNode = this.root;
+    let targetParent;
 
     // Stop on the target node
-    while (searchPointer !== null) {
-      if (value === searchPointer.value) {
+    while (targetNode !== null) {
+      if (value === targetNode.value) {
         break;
       }
 
-      parent = searchPointer;
+      targetParent = targetNode;
 
-      if (value < searchPointer.value) {
-        searchPointer = searchPointer.leftNode;
+      if (value < targetNode.value) {
+        targetNode = targetNode.leftNode;
         continue;
       }
 
-      if (value > searchPointer.value) {
-        searchPointer = searchPointer.rightNode;
+      if (value > targetNode.value) {
+        targetNode = targetNode.rightNode;
         continue;
       }
     }
 
-    // If node not found, return
-    if (searchPointer === null) {
+    // If target node not found, return
+    if (targetNode === null) {
       console.error("Node not found");
       return;
     }
 
-    if (parent.leftNode === searchPointer) {
+    if (targetParent.leftNode === targetNode) {
       // If target node has no child, parent points to null
-      if (searchPointer.leftNode === null && searchPointer.rightNode === null) {
-        parent.leftNode = null;
+      if (targetNode.leftNode === null && targetNode.rightNode === null) {
+        targetParent.leftNode = null;
         return;
       }
 
       // If target node has one child, parent points to target node's child
-      if (searchPointer.leftNode === null) {
-        parent.leftNode = searchPointer.rightNode;
+      if (targetNode.leftNode === null) {
+        targetParent.leftNode = targetNode.rightNode;
         return;
-      } else if (searchPointer.rightNode === null) {
-        parent.leftNode = searchPointer.leftNode;
+      } else if (targetNode.rightNode === null) {
+        targetParent.leftNode = targetNode.leftNode;
         return;
       }
+
+      // If target node has two children, find the inorder succeessor (left most node of right subtree)
+      let inorderSuccessor = targetNode.rightNode;
+      let inorderSuccessorParent = targetNode;
+
+      // If right node of target node is immediately the inorder successor, copy its value and right subtree to the target node
+      if (inorderSuccessor.leftNode === null) {
+        targetNode.value = inorderSuccessor.value;
+        targetNode.rightNode = inorderSuccessor.rightNode;
+        return;
+      }
+
+      while (inorderSuccessor.leftNode !== null) {
+        inorderSuccessorParent = inorderSuccessor;
+        inorderSuccessor = inorderSuccessor.leftNode;
+      }
+
+      // Copy inorder successor's value to target node
+      targetNode.value = inorderSuccessor.value;
+
+      // Inorder successor's right subtree will be passed to it's parent's left node
+      inorderSuccessorParent.leftNode = inorderSuccessor.rightNode;
     }
 
-    if (parent.rightNode === searchPointer) {
+    if (targetParent.rightNode === targetNode) {
       // If target node has no child, parent points to null
-      if (searchPointer.leftNode === null && searchPointer.rightNode === null) {
-        parent.rightNode = null;
+      if (targetNode.leftNode === null && targetNode.rightNode === null) {
+        targetParent.rightNode = null;
         return;
       }
 
       // If target node has one child, parent points to target node's child
-      if (searchPointer.leftNode === null) {
-        parent.rightNode = searchPointer.rightNode;
+      if (targetNode.leftNode === null) {
+        targetParent.rightNode = targetNode.rightNode;
         return;
-      } else if (searchPointer.rightNode === null) {
-        parent.rightNode = searchPointer.leftNode;
+      } else if (targetNode.rightNode === null) {
+        targetParent.rightNode = targetNode.leftNode;
         return;
       }
+
+      // If target node has two children, find the inorder succeessor (left most node of right subtree)
+      let inorderSuccessor = targetNode.rightNode;
+      let inorderSuccessorParent = targetNode;
+
+      // If right node of target node is immediately the inorder successor, copy its value and right subtree to the target node
+      if (inorderSuccessor.leftNode === null) {
+        targetNode.value = inorderSuccessor.value;
+        targetNode.rightNode = inorderSuccessor.rightNode;
+        return;
+      }
+
+      while (inorderSuccessor.leftNode !== null) {
+        inorderSuccessorParent = inorderSuccessor;
+        inorderSuccessor = inorderSuccessor.leftNode;
+      }
+
+      // Copy inorder successor's value to target node
+      targetNode.value = inorderSuccessor.value;
+
+      // Inorder successor's right subtree will be passed to it's parent's left node
+      inorderSuccessorParent.leftNode = inorderSuccessor.rightNode;
     }
-
-    //function deleteconditions
-
-    // if two children
-    // replace with leftmost child of right child
-    //if leftmost child has right subtree, pass subtree to parent left
   }
 }

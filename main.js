@@ -1,8 +1,9 @@
 import { Tree } from "./tree.js";
 
+/*
 // Initialize
 const test = new Tree([1, 4, 3, 5, 8, 6, 7, 10, 13, 15, 18, 12, 14]);
-/*
+
 // prettyPrint
 test.prettyPrint(test.root);
 
@@ -71,4 +72,64 @@ test.insert(27);
 test.prettyPrint(test.root);
 console.log(test.rebalance());
 test.prettyPrint(test.root);
+*/
+
+function randomArray(size) {
+  const array = [];
+
+  for (let i = 1; i <= size; i++) {
+    array.push(i);
+  }
+
+  shuffle(array);
+
+  return array;
+}
+
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+}
+
+/*
+function logNodeValue(node) {
+  console.log(node.value);
+}
+*/
+
+const array = randomArray(20);
+const test = new Tree(array);
+console.log(test.isBalanced());
+test.prettyPrint(test.root);
+/*
+console.log(test.levelOrder(logNodeValue));
+console.log(test.preOrder(logNodeValue));
+console.log(test.postOrder(logNodeValue));
+console.log(test.inOrder(logNodeValue));
+*/
+test.insert(24);
+test.insert(25);
+test.insert(26);
+test.insert(27);
+console.log(test.isBalanced());
+test.prettyPrint(test.root);
+console.log(test.rebalance());
+test.prettyPrint(test.root);
+/*
+console.log(test.levelOrder(logNodeValue));
+console.log(test.preOrder(logNodeValue));
+console.log(test.postOrder(logNodeValue));
+console.log(test.inOrder(logNodeValue));
 */

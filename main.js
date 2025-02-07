@@ -9,3 +9,10 @@ test.prettyPrint(test.root);
 // insert()
 test.insert(2);
 test.prettyPrint(test.root);
+
+// deleteItem()
+test.deleteItem(2);
+test.prettyPrint(test.root);
+test.deleteItem(9);
+test.prettyPrint(test.root);
+test.deleteItem(4);

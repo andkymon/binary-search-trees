@@ -2,10 +2,10 @@ import { Tree } from "./tree.js";
 
 // Initialize
 const test = new Tree([1, 4, 3, 5, 8, 6, 7, 10, 13, 15, 18, 12, 14]);
-
+/*
 // prettyPrint
 test.prettyPrint(test.root);
-/*
+
 // insert()
 test.insert(2);
 test.prettyPrint(test.root);
@@ -54,11 +54,21 @@ console.log(test.height(test.root.rightNode));
 console.log(test.depth(test.root));
 console.log(test.depth(test.root.rightNode));
 
-// isBalanced();
+// isBalanced()
 console.log(test.isBalanced());
 test.insert(24);
 test.insert(25);
 test.insert(26);
 test.insert(27);
 console.log(test.isBalanced());
+
+// rebalance()
+console.log(test.rebalance());
+test.insert(24);
+test.insert(25);
+test.insert(26);
+test.insert(27);
+test.prettyPrint(test.root);
+console.log(test.rebalance());
+test.prettyPrint(test.root);
 */

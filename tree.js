@@ -305,4 +305,14 @@ export class Tree {
 
     return false;
   }
+
+  rebalance() {
+    if (this.isBalanced() === true) {
+      return "Tree already balanced";
+    }
+
+    const array = [];
+    this.inOrder((node) => array.push(node.value));
+    this.root = this.buildTree(array);
+  }
 }

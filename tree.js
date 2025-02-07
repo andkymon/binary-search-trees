@@ -48,8 +48,9 @@ export class Tree {
 
     // Stop on the target node's parent
     // While searchPointer is not a leaf
-    while (searchPointer.leftNode !== null &&
-        searchPointer.rightNode !== null
+    while (
+      searchPointer.leftNode !== null &&
+      searchPointer.rightNode !== null
     ) {
       if (value === searchPointer.value) {
         return;
@@ -106,32 +107,41 @@ export class Tree {
       return;
     }
 
-    // If node is a leaf, remove from parent
     if (parent.leftNode === searchPointer) {
-      if (
-        searchPointer.leftNode === null &&
-        searchPointer.rightNode === null
-      ) {
+      // If target node has no child, parent points to null
+      if (searchPointer.leftNode === null && searchPointer.rightNode === null) {
         parent.leftNode = null;
+        return;
+      }
+
+      // If target node has one child, parent points to target node's child
+      if (searchPointer.leftNode === null) {
+        parent.leftNode = searchPointer.rightNode;
+        return;
+      } else if (searchPointer.rightNode === null) {
+        parent.leftNode = searchPointer.leftNode;
         return;
       }
     }
 
     if (parent.rightNode === searchPointer) {
-        if (
-          searchPointer.leftNode === null &&
-          searchPointer.rightNode === null
-        ) {
-          parent.rightNode = null;
-          return;
-        }
+      // If target node has no child, parent points to null
+      if (searchPointer.leftNode === null && searchPointer.rightNode === null) {
+        parent.rightNode = null;
+        return;
+      }
+
+      // If target node has one child, parent points to target node's child
+      if (searchPointer.leftNode === null) {
+        parent.rightNode = searchPointer.rightNode;
+        return;
+      } else if (searchPointer.rightNode === null) {
+        parent.rightNode = searchPointer.leftNode;
+        return;
+      }
     }
 
-    //if a leaf (no child node)
-    //previouspointer null
-
-    //if one child
-    //previouspointer points to its child
+    //function deleteconditions
 
     // if two children
     // replace with leftmost child of right child

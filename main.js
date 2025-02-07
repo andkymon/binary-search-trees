@@ -15,4 +15,6 @@ test.deleteItem(2);
 test.prettyPrint(test.root);
 test.deleteItem(9);
 test.prettyPrint(test.root);
+test.deleteItem(1);
+test.prettyPrint(test.root);
 test.deleteItem(4);

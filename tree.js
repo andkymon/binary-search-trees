@@ -4,7 +4,6 @@ export class Tree {
     constructor(array) {
         array.sort();
         this.root = this.buildTree(array);
-        console.log(this.root);
     }
 
     buildTree(array) {
@@ -35,4 +34,48 @@ export class Tree {
             this.prettyPrint(node.leftNode, `${prefix}${isLeft ? "    " : "│   "}`, true);
         }
     }
+
+    insert(value) {
+        let searchPointer = this.root;
+
+        while (searchPointer !== null) {
+            if (value === searchPointer.value) {
+                return;
+            } 
+            
+            if (value < searchPointer.value) {
+                if (searchPointer.leftNode === null) {
+                    searchPointer.leftNode = new Node(value, null, null);
+                    return;
+                }
+                searchPointer = searchPointer.leftNode;
+                continue;
+            } 
+
+            if (value > searchPointer.value) {
+                if (searchPointer.rightNode === null) {
+                    searchPointer.rightNode = new Node(value, null, null);
+                    return;
+                }
+                searchPointer = searchPointer.rightNode;
+                continue;
+            } 
+        }
+    }
+
+    /*
+    deleteItem(value) {
+        //find node
+
+        //if a leaf (no child node)
+        //previouspointer null
+
+        //if one child
+        //previouspointer points to its child
+
+        // if two children
+        // replace with leftmost child of right child
+        //if leftmost child has right subtree, pass subtree to parent left
+    }
+    */
 }

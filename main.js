@@ -1,5 +1,11 @@
 import { Tree } from "./tree.js";
 
-const test = new Tree([3, 4, 2, 1, 7, 8, 6, 5, 9]);
+// Initialize
+const test = new Tree([1, 7, 8, 5, 9]);
 
+// prettyPrint
+test.prettyPrint(test.root);
+
+// insert()
+test.insert(2);
 test.prettyPrint(test.root);

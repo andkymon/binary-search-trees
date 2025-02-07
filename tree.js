@@ -252,4 +252,19 @@ export class Tree {
     this.postOrder(callback, rootNode.rightNode);
     callback(rootNode);
   }
+
+  height(node) {
+    if (node === null) {
+      return 0;
+    }
+
+    const leftSubtreeHeight = this.height(node.leftNode);
+    const rightSubtreeHeight = this.height(node.rightNode);
+
+    if (leftSubtreeHeight > rightSubtreeHeight) {
+      return leftSubtreeHeight + 1;
+    } else {
+      return rightSubtreeHeight + 1;
+    }
+  }
 }

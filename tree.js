@@ -208,8 +208,6 @@ export class Tree {
         queue.push(searchPointer.rightNode);
       }
     }
-
-    return queue;
   }
 
   inOrder(callback, rootNode = this.root) {

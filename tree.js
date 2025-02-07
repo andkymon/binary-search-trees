@@ -158,4 +158,32 @@ export class Tree {
     // Inorder successor's right subtree will be passed to it's parent's left node
     inorderSuccessorParent.leftNode = inorderSuccessor.rightNode;
   }
+
+  find(value) {
+    let targetNode = this.root;
+
+    while (targetNode !== null) {
+      if (value === targetNode.value) {
+        break;
+      }
+
+      if (value < targetNode.value) {
+        targetNode = targetNode.leftNode;
+        continue;
+      }
+
+      if (value > targetNode.value) {
+        targetNode = targetNode.rightNode;
+        continue;
+      }
+    }
+
+    // If target node not found, return
+    if (targetNode === null) {
+      console.error("Node not found");
+      return;
+    }
+
+    return targetNode;
+  }
 }

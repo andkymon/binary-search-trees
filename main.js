@@ -29,7 +29,6 @@ test.prettyPrint(test.root);
 // find()
 console.log(test.find(8));
 console.log(test.find(99));
-*/
 
 // levelOrder()
 function logNodeValue(node) {
@@ -37,3 +36,13 @@ function logNodeValue(node) {
 }
 test.levelOrder(logNodeValue);
 test.levelOrder();
+
+// inOrder()
+test.inOrder(logNodeValue);
+
+// preOrder()
+test.preOrder(logNodeValue);
+
+// postOrder()
+test.postOrder(logNodeValue);
+*/

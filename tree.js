@@ -210,4 +210,46 @@ export class Tree {
 
     return queue;
   }
+
+  inOrder(callback, rootNode = this.root) {
+    if (callback === undefined) {
+      throw new Error("Callback function is required.");
+    }
+
+    if (rootNode === null) {
+      return;
+    }
+
+    this.inOrder(callback, rootNode.leftNode);
+    callback(rootNode);
+    this.inOrder(callback, rootNode.rightNode);
+  }
+
+  preOrder(callback, rootNode = this.root) {
+    if (callback === undefined) {
+      throw new Error("Callback function is required.");
+    }
+
+    if (rootNode === null) {
+      return;
+    }
+
+    callback(rootNode);
+    this.preOrder(callback, rootNode.leftNode);
+    this.preOrder(callback, rootNode.rightNode);
+  }
+
+  postOrder(callback, rootNode = this.root) {
+    if (callback === undefined) {
+      throw new Error("Callback function is required.");
+    }
+
+    if (rootNode === null) {
+      return;
+    }
+
+    this.postOrder(callback, rootNode.leftNode);
+    this.postOrder(callback, rootNode.rightNode);
+    callback(rootNode);
+  }
 }

@@ -99,8 +99,7 @@ export class Tree {
 
     // If target node not found, return
     if (targetNode === null) {
-      console.error("Node not found");
-      return;
+      throw new Error("Node not found");
     }
     
     // Case 1: If target node has no child, target node is replaced by null
@@ -180,10 +179,35 @@ export class Tree {
 
     // If target node not found, return
     if (targetNode === null) {
-      console.error("Node not found");
-      return;
+      throw new Error("Node not found");
     }
 
     return targetNode;
+  }
+
+  levelOrder(callback) {
+    if (callback === undefined) {
+      throw new Error("Callback function is required.");
+    }
+
+    let searchPointer;
+    const queue = [];
+    
+    queue.push(this.root);
+    
+    while (queue.length !== 0) {
+      searchPointer = queue.shift();
+      callback(searchPointer);
+
+      if (searchPointer.leftNode !== null) {
+        queue.push(searchPointer.leftNode)
+      }
+
+      if (searchPointer.rightNode !== null) {
+        queue.push(searchPointer.rightNode);
+      }
+    }
+
+    return queue;
   }
 }

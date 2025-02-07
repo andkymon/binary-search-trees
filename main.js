@@ -5,7 +5,7 @@ const test = new Tree([1, 4, 3, 5, 8, 6, 7, 10, 13, 15, 18, 12, 14]);
 
 // prettyPrint
 test.prettyPrint(test.root);
-
+/*
 // insert()
 test.insert(2);
 test.prettyPrint(test.root);
@@ -29,3 +29,11 @@ test.prettyPrint(test.root);
 // find()
 console.log(test.find(8));
 console.log(test.find(99));
+*/
+
+// levelOrder()
+function logNodeValue(node) {
+    console.log(node.value);
+}
+test.levelOrder(logNodeValue);
+test.levelOrder();

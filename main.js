@@ -45,8 +45,12 @@ test.preOrder(logNodeValue);
 
 // postOrder()
 test.postOrder(logNodeValue);
-*/
 
 // height()
 console.log(test.height(test.root));
 console.log(test.height(test.root.rightNode));
+
+// depth()
+console.log(test.depth(test.root));
+console.log(test.depth(test.root.rightNode));
+*/

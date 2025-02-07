@@ -267,4 +267,31 @@ export class Tree {
       return rightSubtreeHeight + 1;
     }
   }
+
+  depth(node) {
+    if (node === null) {
+      throw new Error("Node not found");
+    }
+
+    let searchPointer = this.root;
+    let counter = 1;
+
+    while (searchPointer !== null) {
+      if (node.value === searchPointer.value) {
+        return counter;
+      }
+
+      if (node.value < searchPointer.value) {
+        searchPointer = searchPointer.leftNode;
+        counter++;
+        continue;
+      }
+      
+      if (node.value > searchPointer.value) {
+        searchPointer = searchPointer.rightNode;
+        counter++;
+        continue;
+      }
+    }
+  }
 }

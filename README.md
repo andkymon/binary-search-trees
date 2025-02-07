@@ -1,6 +1,6 @@
 # binary-search-trees
 
-# Tree Data Structure
+# Binary Search Trees
 
 This `Tree` class implements a balanced binary search tree (BST) with various utility methods for insertion, deletion, traversal, and balance checking. It automatically balances the tree during construction and offers functionality to rebalance the tree when necessary. The tree is represented by `Node` objects, and all tree operations are performed with efficiency in mind.
 
